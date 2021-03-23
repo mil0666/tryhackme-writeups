@@ -1,6 +1,12 @@
 # Steel mountain
 
-First what I like to do with any machine turn on nmap and gobuster and let them run in the background I have my nappy.sh and gobuddy-dir.sh "scripts"
+This is a Write up for the Steel Mountain machine form TryHackMe you can find the link and details about the room in the [README.md](https://github.com/mil0666/tryhackme-writeups/blob/main/README.md)
+**FIY**: words that are marked *LIKE THIS* are commands that you can use in you terminal
+
+
+
+First what I like to do with any machine turn on nmap and gobuster and let them run in the background I have my nappy.sh and 
+gobuddy-dir.sh "scripts"
 
 nappy.sh - *nmap -sS -sV -A -O $IP*
 
@@ -28,7 +34,7 @@ So there we have our first answer.
  2. Scan the machine with nmap. What is the other port running a web server on?
    Good thing we got the nmap scan already running so we know the answer to this is
 
- **8080**
+    **8080**
 
 ![image](https://user-images.githubusercontent.com/81188817/112178397-fc3e7000-8bf9-11eb-8fa1-6a2df846e24d.png)
 
@@ -36,7 +42,7 @@ So there we have our first answer.
 3. Take a look at the other web server. What file server is running?
 
     So in the screen shot above we can see it is a HttpFileServer 2.3
-    but that is only the part of the server. If you don't seer this HttpFileServer 2.3. below the Actions the first time you go to the link, feel free to click around a bit or       refresh and it will appear.
+    but that is only the part of the server. If you don't see this HttpFileServer 2.3. hyperlinked below the Actions the first time you go to the link, feel free to click around     a bit or refresh the page and it will appear.
     When you actually click on it it will take you this link - http://www.rejetto.com/hfs/
 
     So with this we now have the whole answer:
@@ -53,7 +59,7 @@ So there we have our first answer.
     So the answer is:  **2014-6287**
 
 The command for searchsploit is:
-searchsploit rejetto http file server
+*searchsploit rejetto http file server*
 
 Here we can see searchsploit results and we can see the **39161.py** that we will need for this machine a bit later, so you can just copy that python script to your working directory so you don't have to look for it later.
 
@@ -118,7 +124,8 @@ First what we need to do is download the **PowerUp.ps1** script to our working d
   so we can actually use the script * . .\PowerUp.ps1 * and after that Invoke-AllChecks
  It should look like this:
 
- LOAD POWESHELL img
+ ![image](https://user-images.githubusercontent.com/81188817/112180478-e16cfb00-8bfb-11eb-8f5f-8212bdff6a5d.png)
+
 
  Pay close attention to the **CanRestart** option that is set to true. What is the name of the name of the service which shows up as an _unquoted service path_ vulnerability?
 
@@ -146,13 +153,18 @@ First what we need to do is download the **PowerUp.ps1** script to our working d
 
   We have to put quotations because of the spaces, we can't cd without them into these folders.
 
-  When we're there we will stop the ASCService.exe, but first type in *shell* to get a shell where we can actually stop the service since I haven't found a way to do this from meterpreter:
+  When we're there we will stop the ASCService.exe, but first type in *shell* to get a shell where we can actually stop the service since I haven't found a way to do this from     meterpreter:
 
   After you get the shell type:  *net stop AdvancedSystemCareService9*
 
-  STOP SERVICE img
+ ![image](https://user-images.githubusercontent.com/81188817/112180605-fea1c980-8bfb-11eb-9c1e-7146c7afa6e2.png)
 
-  Then we leave this shell so we can upload our payload through meterpreter and get back the shell. You do this with CTRL+C or *exit*
+
+  Then we leave this shell so we can *upload* our payload through meterpreter and get back the shell. You do this with CTRL+C or *exit*
+  And then upload the payload the same way we did with the PowerUp.ps1 script:
+  
+  ![image](https://user-images.githubusercontent.com/81188817/112180784-25600000-8bfc-11eb-9fb6-3039d8c46968.png)
+
 
   Before we start the service again make sure you have a nc listener on your attacking machine with the port you defined  while making the payload in msfvenom (LPORT option):
   In my case it's:
@@ -168,4 +180,5 @@ First what we need to do is download the **PowerUp.ps1** script to our working d
   When you type *whoami* you will se you are **nt authority\system** which is root for windows.
 
   From there you can go ahead to the Administrators desktop and look for the flag.
- ADMIN F
+ 
+![image](https://user-images.githubusercontent.com/81188817/112180844-33ae1c00-8bfc-11eb-8be6-b8b8a18ab7f2.png)
