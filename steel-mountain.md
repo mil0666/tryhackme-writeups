@@ -5,7 +5,11 @@ This is a Write up for the Steel Mountain machine form TryHackMe you can find th
 
 
 
+<<<<<<< HEAD
 First what I like to do with any machine turn on nmap and gobuster and let them run in the background I have my nappy.sh and
+=======
+First what I like to do with any machine turn on nmap and gobuster and let them run in the background I have my nappy.sh and 
+>>>>>>> 99696e42aac3cf1dc2222f6f7609eb7e1fcb056f
 gobuddy-dir.sh "scripts"
 
 nappy.sh - *nmap -sS -sV -A -O $IP*
@@ -14,10 +18,20 @@ gobuddy-dir.sh - *gobuster dir -u http://$IP -w /usr/share/seclists/Discovery/We
 
 I usually use seclists for this you can find them here - https://github.com/danielmiessler/SecLists
 
+<<<<<<< HEAD
 ### INITIAL ACCESS
 
 While our scans are going in the background we can take a look at our target through the browser
 
+=======
+### INITIAL ACCESS 
+
+While our scans are going in the background we can take a look at our target through the browser
+
+![image](https://user-images.githubusercontent.com/81188817/112178218-e466ec00-8bf9-11eb-812e-d30437a76bf7.png)
+
+
+>>>>>>> 99696e42aac3cf1dc2222f6f7609eb7e1fcb056f
 
 I tried to zoom in here to see if his name is written on the shirt but no luck,
 My next try was going to View source for this page and there it was /img/BillHarper.png
@@ -43,9 +57,15 @@ So there we have our first answer.
     When you actually click on it it will take you this link - http://www.rejetto.com/hfs/
 
     So with this we now have the whole answer:
+<<<<<<< HEAD
 
     **Rejetto http file server**
 
+=======
+
+    **Rejetto http file server**
+  
+>>>>>>> 99696e42aac3cf1dc2222f6f7609eb7e1fcb056f
 4. What is the CVE number to exploit this file server?
 
     We can either use google (exploit-db) or searchsploit to find exploits for this HFS:
@@ -76,7 +96,11 @@ Here we can see searchsploit results and we can see the **39161.py** that we wil
 
 
  Then you'll type in *options* to see what we have to configure in order for this payload to work:
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 99696e42aac3cf1dc2222f6f7609eb7e1fcb056f
  ![image](https://user-images.githubusercontent.com/81188817/112179080-a61dfc80-8bfa-11eb-8ce2-2c91ff2648bf.png)
 
  ##### What we need to configure:
@@ -159,7 +183,11 @@ First what we need to do is download the **PowerUp.ps1** script to our working d
 
   Then we leave this shell so we can *upload* our payload through meterpreter and get back the shell. You do this with CTRL+C or *exit*
   And then upload the payload the same way we did with the PowerUp.ps1 script:
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 99696e42aac3cf1dc2222f6f7609eb7e1fcb056f
   ![image](https://user-images.githubusercontent.com/81188817/112180784-25600000-8bfc-11eb-9fb6-3039d8c46968.png)
 
 
@@ -177,6 +205,7 @@ First what we need to do is download the **PowerUp.ps1** script to our working d
   When you type *whoami* you will se you are **nt authority\system** which is root for windows.
 
   From there you can go ahead to the Administrators desktop and look for the flag.
+<<<<<<< HEAD
 
 ![image](https://user-images.githubusercontent.com/81188817/112180844-33ae1c00-8bfc-11eb-8be6-b8b8a18ab7f2.png)
 
@@ -187,3 +216,7 @@ Remember the python script that I said you should save to your working directory
 If you didn't save it then no big deal you can just go to you directory and type:
 *cp /usr/share/exploitdb/exploits/windows/remote/39161.py* - this will copy the script to you current directory sdsdsss
 s
+=======
+ 
+![image](https://user-images.githubusercontent.com/81188817/112180844-33ae1c00-8bfc-11eb-8be6-b8b8a18ab7f2.png)
+>>>>>>> 99696e42aac3cf1dc2222f6f7609eb7e1fcb056f
