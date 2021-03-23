@@ -185,4 +185,5 @@ First what we need to do is download the **PowerUp.ps1** script to our working d
 Remember the python script that I said you should save to your working directory cause we're gonna use it later, well later is now :D 
 
 If you didn't save it then no big deal you can just go to you directory and type:
-*cp /usr/share/exploitdb/exploits/windows/remote/39161.py* - this will copy the script to you current directory sdsd
+*cp /usr/share/exploitdb/exploits/windows/remote/39161.py* - this will copy the script to you current directory sdsdsss
+s
