@@ -4,10 +4,7 @@ This is a Write up for the Steel Mountain machine form TryHackMe you can find th
 **FIY**: words that are marked *LIKE THIS* are commands that you can use in you terminal
 
 
-
-<<<<<<< HEAD
 First what I like to do with any machine turn on nmap and gobuster and let them run in the background I have my nappy.sh and
-=======
 First what I like to do with any machine turn on nmap and gobuster and let them run in the background I have my nappy.sh and
 
 gobuddy-dir.sh "scripts"
