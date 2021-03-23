@@ -1,5 +1,5 @@
 # TryHackMe Writeups
-**My THM journey, trial and errors all written down in hope to help out anyone who seeks answers :D**
+**My THM journey, trial and errors all written down in hope that it will help out anyone who seeks answers :D**
 
 ## My THM profile:
 
