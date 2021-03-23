@@ -2,7 +2,7 @@
 
 This is a Write up for the Steel Mountain machine form TryHackMe you can find the link and details about the room in the [README.md](https://github.com/mil0666/tryhackme-writeups/blob/main/README.md)
 
-**FIY**: words that are marked *LIKE THIS* are commands that you can use in you terminal and no flags were disclosed in this write up! 
+**FIY**: words that are marked *LIKE THIS* are commands that you can use in you terminal and no flags were disclosed in this write up!
 
 
 First what I like to do with any machine turn on nmap and gobuster and let them run in the background I have my nappy.sh and
@@ -40,7 +40,7 @@ So there we have our first answer.
      Good thing we got the nmap scan already running so we know the answer to this is
 
      **8080**
-    
+
 ![image](https://user-images.githubusercontent.com/81188817/112178397-fc3e7000-8bf9-11eb-8fa1-6a2df846e24d.png)
 
 
@@ -256,7 +256,7 @@ I'll definitely try it a couple of times and update if I get a different result.
 What powershell -c command could we run to manually find out the service name? With a bit of googling the Powershell commands you will find the answer to be:
 
   **powershell -c "Get-Service"**
-  
+
   ![image](https://user-images.githubusercontent.com/81188817/112220203-45a4b480-8c26-11eb-800a-29903766ab55.png)
 
 
@@ -277,4 +277,3 @@ And again we got nt authority\system and we can go and pick up the root.txt at C
 ## HAPPY NOISES!
 
 ![image](https://user-images.githubusercontent.com/81188817/112220129-2efe5d80-8c26-11eb-8df7-ae719d6e1932.png)
-
