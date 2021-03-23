@@ -211,7 +211,7 @@ Okay so when we run the payload with python we will get an error saying that we 
 
 **FIY**: you have to run it with just python 39616.py <IP address> <port>, python3 will give you an error if you try
 
-SCRIPT PYTHON
+![image](https://user-images.githubusercontent.com/81188817/112213471-6832cf80-8c1e-11eb-9705-b4bfa963559d.png)
 
 Here we see three things that will make this script work as its supposed to
 
@@ -229,7 +229,8 @@ Now open another terminal and lets configure our nc listener with the port we co
 
 The first time we run, we will acutually be transfering the nc.exe that we downloaded earlier and you should get 200 response on your web server:
 
-NC DOWNLOIAD img
+![image](https://user-images.githubusercontent.com/81188817/112213525-75e85500-8c1e-11eb-91ce-379089084445.png)
+
 
 And the second time we run the script we will get a shell.
 Now we can go to bills Desktop and pull winpeas (if you need to find out if the system is x64 or x86 you can use this command - *wmic os get osarchitecture* )
