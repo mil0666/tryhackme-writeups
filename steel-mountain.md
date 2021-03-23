@@ -232,7 +232,9 @@ The first time we run, we will acutually be transfering the nc.exe that we downl
 
 And the second time we run the script we will get a shell.
 
-THE POWER OF three
+![image](https://user-images.githubusercontent.com/81188817/112220256-56552a80-8c26-11eb-8bef-25fa4830f02c.png)
+
+
 Now we can go to bills Desktop and pull winPEAS (if you need to find out if the system is x64 or x86 you can use this command - *wmic os get osarchitecture* )
 
 So our system is x64 we can use winPEASx64.exe that we can download from here - https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/winPEAS/winPEASexe
@@ -253,6 +255,9 @@ I'll definitely try it a couple of times and update if I get a different result.
 What powershell -c command could we run to manually find out the service name? With a bit of googling the Powershell commands you will find the answer to be:
 
   **powershell -c "Get-Service"**
+  
+  ![image](https://user-images.githubusercontent.com/81188817/112220203-45a4b480-8c26-11eb-800a-29903766ab55.png)
+
 
 ##### EXPLOATATION:
 
@@ -269,3 +274,6 @@ And  we have to use sc start, I tried with net start but it wasn't working and a
 And again we got nt authority\system and we can go and pick up the root.txt at C:\Users\Administrator\Desktop (to list files in a folder you can use *dir* and to look at a file equivalent to *cat* from Linux is *type*)
 
 ## HAPPY NOISES!
+
+![image](https://user-images.githubusercontent.com/81188817/112220129-2efe5d80-8c26-11eb-8df7-ae719d6e1932.png)
+
