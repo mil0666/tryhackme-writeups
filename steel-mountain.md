@@ -37,10 +37,10 @@ So there we have our first answer.
 
  2. Scan the machine with nmap. What is the other port running a web server on?
 
-   Good thing we got the nmap scan already running so we know the answer to this is
+     Good thing we got the nmap scan already running so we know the answer to this is
 
-    **8080**
-
+     **8080**
+    
 ![image](https://user-images.githubusercontent.com/81188817/112178397-fc3e7000-8bf9-11eb-8fa1-6a2df846e24d.png)
 
 
