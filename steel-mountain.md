@@ -10,7 +10,6 @@ I usually use seclists for this you can find them here - https://github.com/dani
 
 While our scans are going in the background we can take a look at our target through the browser
 
-Bill img
 
 I tried to zoom in here to see if his name is written on the shirt but no luck,
 My next try was going to View source for this page and there it was /img/BillHarper.png
